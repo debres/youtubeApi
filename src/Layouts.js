@@ -1,17 +1,15 @@
-import React, { Component, Fragment } from 'react';
-import Header from './Header/Header.js';
+import React, { Component } from 'react';
+import Search from './Search/Search.js';
 import './Layouts.css';
 
-class App extends Component {
+class Layouts extends Component {
   render() {
     return (
-      <Fragment>
-        <Header />
-        <section>Random video</section>
-        <aside>Related video list</aside>
-      </Fragment>
+      <main>
+        <Search />
+      </main>
     );
   }
 }
 
-export default App;
+export default Layouts;
