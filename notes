@@ -1,1 +1,23 @@
 AIzaSyAiz9Xy2w4P8wKwiu0aJZ5v2Es90E42K2g
+
+
+<Row>{this.state.videoItems !== null
+                            ? <SearchResults videoItems={this.state.videoItems}/>
+                            : <Row><Col>You have to paste some thing....</Col></Row>}
+</Row>
+<Row>{this.state.relatedVideo !== null
+                            ? <RelatedVideo relatedVideo={this.state.relatedVideo}/>
+                            : <Row><Col>You can start right now...</Col></Row>}
+</Row>
+<Row>{this.state.relatedComments !== null
+                            ? <Comments relatedComments={this.state.relatedComments}/>
+                            : <Row><Col>You can start right now...</Col></Row>}
+</Row>
+
+
+<Route path="/" render={(props) => <Search {...props} search={this.serach}/>} />
+<Route path="/searchResults" render={(props) => <SearchResults {...props} videoList={this.state.videoItems}/>} />
+<Route path="/SinglePage" component={SinglePage}/>
+
+
+{{pathname: "/SinglePage", state: metaData }}
