@@ -8,7 +8,7 @@ const comments = ({ relatedComments }) => {
     return (
             <Row key={serchedItem.etag}>
               <Col xs={6} md={4} sm={4}>
-                <p>{serchedItem.snippet.topLevelComment.snippet.authorDisplayName}</p>
+                <h2>{serchedItem.snippet.topLevelComment.snippet.authorDisplayName}</h2>
               </Col>
               <Col xs={12} md={8} sm={8}>
                 <p>{serchedItem.snippet.topLevelComment.snippet.textDisplay}</p>
