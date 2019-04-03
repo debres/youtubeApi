@@ -1,6 +1,7 @@
 import { createStore } from 'redux';
-import serchedVideos from './Redusers/SerchedVideos';
+import rootReducer from './Reducers/rootReducer';
+import initialState from './Reducers/rootReducer';
 
-const store = createStore(serchedVideos);
+const store = createStore(rootReducer, initialState);
 
 export default store;

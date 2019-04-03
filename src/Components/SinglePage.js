@@ -26,6 +26,7 @@ export default class SinglePage extends Component {
     axios.get(`commentThreads?part=snippet%2Creplies&key=${apiKey}&videoId=${this.props.id}`)
         .then(commentRes =>  {
           const relatedComments =  commentRes.data.items;
+          console.log(relatedComments);
           this.setState({relatedComments})
         });
   }
@@ -35,7 +36,7 @@ export default class SinglePage extends Component {
         <Container>
           <Jumbotron>
             <Row>
-              <Col xs={12} md={8}>
+              <Col xs={8} md={8}>
                                   <iframe width="720" height="405"
                                           src={`https://www.youtube.com/embed/${this.props.id}`}
                                           frameBorder="0"
@@ -43,7 +44,7 @@ export default class SinglePage extends Component {
                                           title='title'>
                                   </iframe>
               </Col>
-              <Col xs={6} md={4}>{this.state.relatedVideo !== null
+              <Col xs={4} md={4}>{this.state.relatedVideo !== null
                                           ? <RelatedVideo relatedVideo={this.state.relatedVideo}/>
                                           : <Row><Col>You can start right now...</Col></Row>}</Col>
 

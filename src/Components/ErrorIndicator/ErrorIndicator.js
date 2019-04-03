@@ -1,7 +1,7 @@
 import React from 'react';
 
-const errorIdicator = () => {
+const errorIndicator = () => {
   return <div>Error...!</div>
 }
 
-export default errorIdicator;
+export default errorIndicator;

@@ -34,7 +34,7 @@ export default class Header extends Component {
         <Container>
           <Jumbotron>
             <Row>
-                <Col xs={6} md={6}>
+                <Col xs={12} md={6}>
                   Logo
                 </Col>
                 <Col xs={12} md={6}>
@@ -60,7 +60,7 @@ export default class Header extends Component {
             <Jumbotron>
             <Row>{this.state.videoItems !== null
                                         ? <Jumbotron><SearchResults videoItems={this.state.videoItems}/></Jumbotron>
-                                        : <Jumbotron><Row><Col>You have to paste some thing....</Col></Row></Jumbotron>}
+                                        : <Jumbotron><Row><Col>You have to paste something....</Col></Row></Jumbotron>}
             </Row>
             </Jumbotron>
           </Container>
