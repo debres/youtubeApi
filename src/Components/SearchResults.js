@@ -66,4 +66,5 @@ const searchResults = ({ videoItems }) => {
       </Container>
   );
 }
+
 export default searchResults;

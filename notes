@@ -21,3 +21,14 @@ AIzaSyAiz9Xy2w4P8wKwiu0aJZ5v2Es90E42K2g
 
 
 {{pathname: "/SinglePage", state: metaData }}
+
+
+<Switch>
+  <Route path="/" exact component={Search} />
+  <Route path="/SinglePage/:id"
+         render={({match}) => {
+            const { id } = match.params
+            return <SinglePage id={id}/>}}/>
+</Switch>
+
+window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()

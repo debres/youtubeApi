@@ -5,7 +5,19 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 const RelatedVideo = styled.article`
-  
+  margin-bottom: 1rem;
+`;
+
+const LinkItem = styled(Link)`
+
+`;
+
+const Image = styled.img`
+
+`;
+
+const Title = styled.p`
+
 `;
 
 const relatedVideo = ({ relatedVideo }) => {
@@ -13,16 +25,16 @@ const relatedVideo = ({ relatedVideo }) => {
   const metaData = relatedVideo.map((serchedItem) => {
     return (
       <RelatedVideo key={serchedItem.etag}>
-          <Link to={`/SinglePage/${serchedItem.id.videoId}`}>
+          <LinkItem to={`/SinglePage/${serchedItem.id.videoId}`}>
             <Row>
               <Col md={4} sm={4}>
-                <img src={serchedItem.snippet.thumbnails.default.url} alt={serchedItem.snippet.title} />
+                <Image src={serchedItem.snippet.thumbnails.default.url} alt={serchedItem.snippet.title} />
               </Col>
               <Col md={8} sm={8}>
-                <p>{serchedItem.snippet.title}</p>
+                <Title>{serchedItem.snippet.title}</Title>
               </Col>
             </Row>
-          </Link>
+          </LinkItem>
       </RelatedVideo>
       )
     }

@@ -1,7 +1,8 @@
 import React from 'react';
+import { Spiner } from 'react-bootstrap';
 
 const spiner = () => {
-  return <div>Loading...!</div>
+  return <Spiner />
 }
 
 export default spiner;

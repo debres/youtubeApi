@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { makeRequest } from '../Actions/SearchAction';
 import { Link } from 'react-router-dom';
 import {Container,
         Row,
@@ -29,8 +31,9 @@ const Logo = styled(Link)`
 
 const LogoText = styled.h1`
   margin-bottom: 1rem;
+  font-family: 'Lobster', cursive;
   text-align: center;
-  font-size: 3rem;
+  font-size: 4rem;
 `;
 
 class Header extends Component {
@@ -39,10 +42,12 @@ class Header extends Component {
   }
 
   doSearch() {
-
+    console.log(this.props);
+    this.props.makeRequest(this.state.surfing);
   }
 
   render() {
+    //const { makeRequest } = this.props;
     return (
       <HeaderContainer>
         <Container>
@@ -57,7 +62,7 @@ class Header extends Component {
                 <InputGroup>
                   <FormControl type="text"
                                value={this.state.surfing}
-                               placeholder="serch for videos"
+                               placeholder="serch for videos items..."
                                onChange={event => {this.setState({surfing: event.target.value})}}
                                onKeyPress={event => {
                                  if (event.key === 'Enter') {
@@ -77,4 +82,12 @@ class Header extends Component {
   }
 }
 
-export default Header;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    makeRequest: () => {
+      dispatch(makeRequest())
+    }
+  }
+}
+
+export default connect((state) => {return {}}, mapDispatchToProps)(Header);
