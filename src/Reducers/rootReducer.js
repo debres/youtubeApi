@@ -1,17 +1,6 @@
-import { apiKey } from '../consts';
+import { combineReducers } from 'redux';
+import searchReducer from './searchReducer';
 
-export const initialState = {
-  apiKey: apiKey,
-  surfing: '',
-  videoItems: null,
-  relatedVideo: null,
-  relatedComments: null
-};
-
-const rootReduser = (state = initialState, action ) => {
-  console.log(state, action);
-  console.log("The action fire off");
-  return state
-};
-
-export default rootReduser;
+export default combineReducers({
+  search: searchReducer
+});

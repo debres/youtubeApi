@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import {Jumbotron,
-        Container,
+import {Container,
         Row,
         Col } from 'react-bootstrap';
 
@@ -10,8 +9,6 @@ import Comments from './Comments';
 
 export default class SinglePage extends Component {
   state = {
-    surfing: '',
-    videoItems: null,
     relatedVideo: null,
     relatedComments: null
   }
@@ -34,27 +31,25 @@ export default class SinglePage extends Component {
   render() {
     return (
         <Container>
-          <Jumbotron>
-            <Row>
-              <Col xs={8} md={8}>
-                                  <iframe width="720" height="405"
-                                          src={`https://www.youtube.com/embed/${this.props.id}`}
-                                          frameBorder="0"
-                                          allowFullScreen
-                                          title='title'>
-                                  </iframe>
-              </Col>
-              <Col xs={4} md={4}>{this.state.relatedVideo !== null
-                                          ? <RelatedVideo relatedVideo={this.state.relatedVideo}/>
-                                          : <Row><Col>You can start right now...</Col></Row>}</Col>
+          <Row>
+            <Col xs={8} md={8}>
+                                <iframe width="640" height="420"
+                                        src={`https://www.youtube.com/embed/${this.props.id}`}
+                                        frameBorder="0"
+                                        allowFullScreen
+                                        title='title'>
+                                </iframe>
+            </Col>
+            <Col xs={4} md={4}>{this.state.relatedVideo !== null
+                                        ? <RelatedVideo relatedVideo={this.state.relatedVideo}/>
+                                        : <Row><Col>You can start right now...</Col></Row>}</Col>
 
-            </Row>
-            <Row>
-              <Col xs={12} md={8}>{this.state.relatedComments !== null
-                                          ? <Comments relatedComments={this.state.relatedComments}/>
-                                          : <Row><Col>You can start right now...</Col></Row>}</Col>
-            </Row>
-          </Jumbotron>
+          </Row>
+          <Row>
+            <Col xs={12} md={8}>{this.state.relatedComments !== null
+                                        ? <Comments relatedComments={this.state.relatedComments}/>
+                                        : <Row><Col>You can start right now...</Col></Row>}</Col>
+          </Row>
         </Container>
     );
   }

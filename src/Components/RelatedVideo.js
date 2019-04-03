@@ -1,14 +1,19 @@
-import React from 'react';
-import {Container,
-        Row,
+import React, { Fragment } from 'react';
+import {Row,
         Col} from 'react-bootstrap';
+import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+
+const RelatedVideo = styled.article`
+  
+`;
 
 const relatedVideo = ({ relatedVideo }) => {
   console.log('this related videos', relatedVideo);
   const metaData = relatedVideo.map((serchedItem) => {
     return (
-          <Link to={`/SinglePage/${serchedItem.id.videoId}`} key={serchedItem.etag}>
+      <RelatedVideo key={serchedItem.etag}>
+          <Link to={`/SinglePage/${serchedItem.id.videoId}`}>
             <Row>
               <Col md={4} sm={4}>
                 <img src={serchedItem.snippet.thumbnails.default.url} alt={serchedItem.snippet.title} />
@@ -18,13 +23,14 @@ const relatedVideo = ({ relatedVideo }) => {
               </Col>
             </Row>
           </Link>
+      </RelatedVideo>
       )
     }
   );
   return (
-      <Container>
+      <Fragment>
         {metaData}
-      </Container>
+      </Fragment>
   );
 }
 export default relatedVideo;

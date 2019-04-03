@@ -1,25 +1,22 @@
-import React, { Component,
-                Fragment } from 'react';
+import React, { Fragment } from 'react';
 import { Switch, Route } from 'react-router-dom';
+import Header from './Header';
 import Search from './Search';
-import SearchResults from './SearchResults';
 import SinglePage from './SinglePage';
 
-class Layouts extends Component {
-  render() {
-    return (
-      <Fragment>
-        <Search />
+const layouts = () => {
+  return (
+    <Fragment>
+        <Header />
         <Switch>
-          <Route path="/SearchResults" component={SearchResults} />
+          <Route path="/" exact component={Search} />
           <Route path="/SinglePage/:id"
                  render={({match}) => {
                     const { id } = match.params
                     return <SinglePage id={id}/>}}/>
         </Switch>
       </Fragment>
-    );
-  }
+  );
 }
 
-export default Layouts;
+export default layouts;

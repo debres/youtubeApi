@@ -1,6 +1,6 @@
 const initialState = {
-  surfing: '',
-  videoItems: null
+  relatedVideo: null,
+  relatedComments: null
 }
 
 export default (state, action) => {
