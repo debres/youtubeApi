@@ -21,7 +21,7 @@ const Itemlink = styled(Link)`
 `;
 
 const Image = styled.img`
-  alighn-self: center;
+  marfin: 0 auto;
   &:focus, &:hover {
       border-radius: 3rem;
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);

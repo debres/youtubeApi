@@ -16,6 +16,7 @@ const HeaderContainer = styled.header`
   top: 0;
   z-index: 1;
   min-height: 60px;
+  margin-bottom: 2rem;
   background-color: #fff;
   border-bottom: 2px solid #e6e8eb;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
@@ -42,8 +43,7 @@ class Header extends Component {
   }
 
   doSearch() {
-    console.log(this.props);
-    this.props.makeRequest(this.state.surfing);
+    this.props.makeRequest();
   }
 
   render() {

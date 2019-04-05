@@ -5,9 +5,9 @@ import {Container,
         Col,} from 'react-bootstrap';
 import styled from 'styled-components'
 
-import SearchResults from './SearchResults';
+import SearchResults from '../Components/SearchResults';
 
-const GreetingText = styled.p`
+const GreetingText = styled.h2`
   color: #46505a;
   font-family: 'Lobster', cursive;
   font-size: 2rem;
@@ -15,15 +15,27 @@ const GreetingText = styled.p`
 `;
 
 class Search extends Component {
-  componentDidMount() {
-    console.log(this.props);
+  state = {
+    videoItems: null
+  }
+
+  componentDidUpdate() {
+    this.updateList();
+  }
+
+  updateList() {
+    const { videoItems } = this.props;
+    if (videoItems) {
+      return;
+    }
+    this.steState({videoItems});
   }
 
   render() {
     return (
         <Container>
-          <Row>{this.props.videoItems !== null
-                                      ? <SearchResults videoItems={this.props.videoItems}/>
+          <Row>{this.state.videoItems !== null
+                                      ? <SearchResults videoItems={this.state.videoItems}/>
                                       : <Col><GreetingText>You have to paste something....</GreetingText></Col>}
           </Row>
         </Container>
@@ -33,7 +45,7 @@ class Search extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    videoItems: state.videoItems
+    videoItems: state
    }
 }
 

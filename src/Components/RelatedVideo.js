@@ -16,7 +16,7 @@ const Image = styled.img`
 
 `;
 
-const Title = styled.p`
+const Title = styled.h3`
 
 `;
 

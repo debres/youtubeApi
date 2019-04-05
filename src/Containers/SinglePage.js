@@ -11,7 +11,8 @@ import Comments from './Comments';
 class SinglePage extends Component {
 
   componentDidMount() {
-
+    this.props.getRelatedVideo();
+    this.props.getRelatedComments();
   }
 
   render() {
@@ -26,14 +27,14 @@ class SinglePage extends Component {
                                         title='title'>
                                 </iframe>
             </Col>
-            <Col xs={4} md={4}>{this.state.relatedVideo !== null
-                                        ? <RelatedVideo relatedVideo={this.state.relatedVideo}/>
+            <Col xs={4} md={4}>{this.props.relatedVideo !== null
+                                        ? <RelatedVideo relatedVideo={this.props.relatedVideo}/>
                                         : <Row><Col><Spinner animation="border" />;</Col></Row>}</Col>
 
           </Row>
           <Row>
-            <Col xs={12} md={8}>{this.state.relatedComments !== null
-                                        ? <Comments relatedComments={this.state.relatedComments}/>
+            <Col xs={12} md={8}>{this.props.relatedComments !== null
+                                        ? <Comments relatedComments={this.props.relatedComments}/>
                                         : <Row><Col><Spinner animation="border" />;</Col></Row>}</Col>
           </Row>
         </Container>
