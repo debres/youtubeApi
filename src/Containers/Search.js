@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {Container,
-        Row,
-        Col,} from 'react-bootstrap';
 import styled from 'styled-components'
 
 import SearchResults from '../Components/SearchResults';
+
+const SearchContaier = styled.section`
+    padding: 0 1rem;
+    display: flex;
+    flex-flow: column nowrap;
+`;
 
 const GreetingText = styled.h2`
   color: #46505a;
@@ -19,33 +22,35 @@ class Search extends Component {
     videoItems: null
   }
 
-  componentDidUpdate() {
-    this.updateList();
+  componentDidUdate(prevProps) {
+    if (this.props.videoItems !== prevProps.videoItems) {
+      this.updateList();
+    }
   }
 
   updateList() {
     const { videoItems } = this.props;
-    if (videoItems) {
+    if (!videoItems) {
       return;
     }
     this.steState({videoItems});
   }
 
   render() {
+    console.log(this.props.videoItems);
     return (
-        <Container>
-          <Row>{this.state.videoItems !== null
-                                      ? <SearchResults videoItems={this.state.videoItems}/>
-                                      : <Col><GreetingText>You have to paste something....</GreetingText></Col>}
-          </Row>
-        </Container>
+        <SearchContaier>
+          {this.props.videoItems !== null
+                                      ? <SearchResults videoItems={this.props.videoItems}/>
+                                      : <GreetingText>You have to paste something....</GreetingText>}
+        </SearchContaier>
     );
   }
 }
 
 const mapStateToProps = (state) => {
   return {
-    videoItems: state
+    videoItems: state.search.videoItems
    }
 }
 

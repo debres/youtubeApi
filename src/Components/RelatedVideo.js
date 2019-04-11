@@ -1,40 +1,56 @@
 import React, { Fragment } from 'react';
-import {Row,
-        Col} from 'react-bootstrap';
-import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 
 const RelatedVideo = styled.article`
+  width: 100%;
+  margin-top: 1rem;
   margin-bottom: 1rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 `;
 
-const LinkItem = styled(Link)`
+const ItemLink = styled(Link)`
+  box-sizing: border-box;
+  display: flex;
+  flex-flow: row nowrap;
+  color: #46505a;
+  text-decoration: none;
+  &:focus, &:hover, &:visited, &:link, &:active {
+      text-decoration: none;
+ }
+`;
 
+const Preview = styled.figcaption`
+  margin: 1rem;
 `;
 
 const Image = styled.img`
-
+  marfin: 0 auto;
+  &:focus, &:hover {
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+ }
+`;
+const VideoText = styled.div`
+  margin: 1rem;
+  > h3 {
+    padding-bottom: 1rem;
+    font-size: 2rem;
+  }
 `;
 
-const Title = styled.h3`
-
-`;
-
-const relatedVideo = ({ relatedVideo }) => {
+const RelatedVideos = ({ relatedVideo }) => {
   console.log('this related videos', relatedVideo);
   const metaData = relatedVideo.map((serchedItem) => {
     return (
       <RelatedVideo key={serchedItem.etag}>
-          <LinkItem to={`/SinglePage/${serchedItem.id.videoId}`}>
-            <Row>
-              <Col md={4} sm={4}>
-                <Image src={serchedItem.snippet.thumbnails.default.url} alt={serchedItem.snippet.title} />
-              </Col>
-              <Col md={8} sm={8}>
-                <Title>{serchedItem.snippet.title}</Title>
-              </Col>
-            </Row>
-          </LinkItem>
+          <ItemLink to={`/SinglePage/${serchedItem.id.videoId}`}>
+            <Preview>
+              <Image src={serchedItem.snippet.thumbnails.default.url} alt={serchedItem.snippet.title} />
+            </Preview>
+            <VideoText>
+              <h3>{serchedItem.snippet.title}</h3>
+            </VideoText>
+          </ItemLink>
       </RelatedVideo>
       )
     }
@@ -45,4 +61,4 @@ const relatedVideo = ({ relatedVideo }) => {
       </Fragment>
   );
 }
-export default relatedVideo;
+export default RelatedVideos;

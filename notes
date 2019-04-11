@@ -1,34 +1,53 @@
 AIzaSyAiz9Xy2w4P8wKwiu0aJZ5v2Es90E42K2g
 
 
-<Row>{this.state.videoItems !== null
-                            ? <SearchResults videoItems={this.state.videoItems}/>
-                            : <Row><Col>You have to paste some thing....</Col></Row>}
+<Col xs={4} md={4}>{this.props.relatedVideo !== null
+                            ? <RelatedVideo relatedVideo={this.props.relatedVideo}/>
+                            : <Row><Col><Spinner animation="border" />;</Col></Row>}</Col>
+
 </Row>
-<Row>{this.state.relatedVideo !== null
-                            ? <RelatedVideo relatedVideo={this.state.relatedVideo}/>
-                            : <Row><Col>You can start right now...</Col></Row>}
-</Row>
-<Row>{this.state.relatedComments !== null
-                            ? <Comments relatedComments={this.state.relatedComments}/>
-                            : <Row><Col>You can start right now...</Col></Row>}
-</Row>
+<Row>
+<Col xs={12} md={8}>{this.props.relatedComments !== null
+                            ? <Comments relatedComments={this.props.relatedComments}/>
+                            : <Row><Col><Spinner animation="border" />;</Col></Row>}</Col>
 
 
 <Route path="/" render={(props) => <Search {...props} search={this.serach}/>} />
-<Route path="/searchResults" render={(props) => <SearchResults {...props} videoList={this.state.videoItems}/>} />
-<Route path="/SinglePage" component={SinglePage}/>
 
 
 {{pathname: "/SinglePage", state: metaData }}
 
 
-<Switch>
-  <Route path="/" exact component={Search} />
-  <Route path="/SinglePage/:id"
-         render={({match}) => {
-            const { id } = match.params
-            return <SinglePage id={id}/>}}/>
-</Switch>
-
 window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+
+
+export const search = (surfinsg) => {
+  return axios.get(`search?part=snippet&maxResults=25&type=video&key=${apiKey}&q=${surfinsg}`)
+          .then((responce) => responce.data.items)
+};
+
+export const relatedVideo = (id) => {
+  return axios.get(`search?part=snippet&maxResults=5&type=video&key=${apiKey}&relatedToVideoId=${id}`)
+          .then((responce) => responce.data.items)
+};
+
+export const relatedComments = (id) => {
+  return axios.get(`commentThreads?part=snippet%2Creplies&key=${apiKey}&videoId=${id}`)
+          .then((responce) => responce.data.items)
+};
+
+
+export const makeRequest = surfing => dispatch => {
+  return search(surfing)
+    .then(searchRes =>
+      dispatch({
+        type: 'FETCH_DATA_SUCCESS',
+        videItems: searchRes
+      })
+    ).catch(error => {
+      dispatch({
+        type: 'FETCH_DATA_ERROR',
+        videItems: error
+      })
+    })
+}

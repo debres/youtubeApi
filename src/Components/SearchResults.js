@@ -1,70 +1,72 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
-import {Container,
-        Row,
-        Col} from 'react-bootstrap';
 import styled from 'styled-components';
 
 const Item = styled.article`
+  width: 100%;
   margin-top: 1rem;
   margin-bottom: 1rem;
-  border-bottom: 1px solid #e6e8eb;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 `;
 
-const Itemlink = styled(Link)`
+const ItemLink = styled(Link)`
+  box-sizing: border-box;
+  display: flex;
+  flex-flow: column nowrap;
   color: #46505a;
   text-decoration: none;
+  @media (max-width: 768px) {
+    flex-flow: row nowrap;
+  }
   &:focus, &:hover, &:visited, &:link, &:active {
       text-decoration: none;
  }
 `;
 
+const Preview = styled.figcaption`
+  margin: 1rem auto;
+`;
+
 const Image = styled.img`
   marfin: 0 auto;
   &:focus, &:hover {
-      border-radius: 3rem;
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
  }
 `;
-
-const Title = styled.h2`
-  padding-bottom: 1rem;
-  border-bottom: 1px solid #e6e8eb;
-  font-size: 2rem;
+const VideoDescription = styled.div`
+  margin: 1rem;
+  > h2 {
+    padding-bottom: 1rem;
+    font-size: 2rem;
+  }
+  > p {
+    padding-bottom: 1rem;
+    font-size: 1.5rem;
+  }
 `;
 
-const Description = styled.p`
-  padding-bottom: 1rem;
-  font-size: 1.5rem;
-`;
-
-const searchResults = ({ videoItems }) => {
+const SearchResults = ({ videoItems }) => {
   const metaData = videoItems.map((serchedItem) => {
     return (
         <Item key={serchedItem.etag}>
-          <Itemlink to={`/SinglePage/${serchedItem.id.videoId}`}>
-            <Row>
-              <Col xs={4} md={4}>
-                <figcaption>
-                  <Image src={serchedItem.snippet.thumbnails.medium.url} alt="video" />
-                </figcaption>
-              </Col>
-              <Col xs={12} md={8}>
-                <Title>{serchedItem.snippet.title}</Title>
-                <Description>{serchedItem.snippet.description}</Description>
-              </Col>
-            </Row>
-          </Itemlink>
+          <ItemLink to={`/SinglePage/${serchedItem.id.videoId}`}>
+            <Preview>
+              <Image src={serchedItem.snippet.thumbnails.medium.url} alt="video" />
+            </Preview>
+            <VideoDescription>
+              <h2>{serchedItem.snippet.title}</h2>
+              <p>{serchedItem.snippet.description}</p>
+            </VideoDescription>
+          </ItemLink>
         </Item>
       )
     }
   );
   return (
-      <Container>
+      <Fragment>
         {metaData}
-      </Container>
+      </Fragment>
   );
 }
 
-export default searchResults;
+export default SearchResults;

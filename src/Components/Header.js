@@ -2,13 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { makeRequest } from '../Actions/SearchAction';
 import { Link } from 'react-router-dom';
-import {Container,
-        Row,
-        Col,
-        FormGroup,
-        FormControl,
-        InputGroup,
-        Button} from 'react-bootstrap';
 import styled from 'styled-components';
 
 const HeaderContainer = styled.header`
@@ -22,19 +15,32 @@ const HeaderContainer = styled.header`
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 `;
 
+const ConstainerFlex = styled.div`
+  margin: 0 1rem;
+  padding: 0 1rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+`;
+
 const Logo = styled(Link)`
+  padding: 1rem;
   color: #46505a;
   text-decoration: none;
+  > h1 {
+    margin-bottom: 1rem;
+    font-family: 'Lobster', cursive;
+    text-align: center;
+    font-size: 3rem;
+  }
   &:focus, &:hover, &:visited, &:link, &:active {
       text-decoration: none;
    }
 `;
 
-const LogoText = styled.h1`
+const FormInput = styled.form`
   margin-bottom: 1rem;
-  font-family: 'Lobster', cursive;
-  text-align: center;
-  font-size: 4rem;
 `;
 
 class Header extends Component {
@@ -42,52 +48,41 @@ class Header extends Component {
     surfing: ''
   }
 
-  doSearch() {
-    this.props.makeRequest();
-  }
-
   render() {
-    //const { makeRequest } = this.props;
     return (
       <HeaderContainer>
-        <Container>
-          <Row>
-            <Col>
-              <Logo to="/" ><LogoText>youtubeApi</LogoText></Logo>
-            </Col>
-          </Row>
-          <Row>
-              <Col>
-              <FormGroup>
-                <InputGroup>
-                  <FormControl type="text"
-                               value={this.state.surfing}
-                               placeholder="serch for videos items..."
-                               onChange={event => {this.setState({surfing: event.target.value})}}
-                               onKeyPress={event => {
-                                 if (event.key === 'Enter') {
-                                   this.doSearch()
-                                 }
-                               }}/>
-                  <InputGroup.Append onClick={() => this.doSearch()}>
-                    <Button variant="outline-secondary">Search</Button>
-                  </InputGroup.Append>
-                </InputGroup>
-              </FormGroup>
-              </Col>
-            </Row>
-          </Container>
-        </HeaderContainer>
+        <ConstainerFlex>
+          <div>
+            <Logo to="/" >
+              <h1>youtubeApi</h1>
+            </Logo>
+          </div>
+          <FormInput>
+            <p>
+              <input
+                type="search"
+                value={this.state.surfing}
+                placeholder="serch for videos items..."
+                onChange={event => {this.setState({surfing: event.target.value})}}
+                onKeyPress={event => {
+                  if (event.key === 'Enter') {
+                    this.props.makeRequest(this.state.surfing)
+                  }
+                }} />
+              <Link to="/"><button onSubmit={this.props.makeRequest(this.state.surfing)}>search</button></Link>
+            </p>
+          </FormInput>
+        </ConstainerFlex>
+      </HeaderContainer>
     );
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    makeRequest: () => {
-      dispatch(makeRequest())
+    makeRequest: (surfing) => {dispatch(makeRequest(surfing))
     }
   }
 }
 
-export default connect((state) => {return {}}, mapDispatchToProps)(Header);
+export default connect(() => {}, mapDispatchToProps)(Header);

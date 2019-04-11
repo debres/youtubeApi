@@ -1,28 +1,28 @@
-import axios from 'axios';
+import { search } from './consts';
 
-const apiKey = 'AIzaSyAiz9Xy2w4P8wKwiu0aJZ5v2Es90E42K2g';
-
-export const search = (surfing) => {
-  return axios.get(`search?part=snippet&maxResults=25&type=video&key=${apiKey}&q=`)
-          .then((responce) => responce.data.items)
-};
-
-export const relatedVideo = (id) => {
-  return axios.get(`search?part=snippet&maxResults=5&type=video&key=${apiKey}&relatedToVideoId=`)
-          .then((responce) => responce.data.items)
-};
-
-export const relatedComments = (id) => {
-  return axios.get(`commentThreads?part=snippet%2Creplies&key=${apiKey}&videoId=`)
-          .then((responce) => responce.data.items)
-};
-
-export const makeRequest = () => dispatch => {
-  return search()
-    .then(dataRes =>
+export function makeRequest(surfing) {
+  return function (dispatch) {
+    return search(surfing)
+    .then(searchRes =>
       dispatch({
         type: 'FETCH_DATA_SUCCESS',
-        videItems: dataRes
+        videItems: searchRes
+      })
+    ).catch(error => {
+      dispatch({
+        type: 'FETCH_DATA_ERROR',
+        videItems: error
+      })
+    })
+  }
+}
+
+export const makeRequestNew = surfing => dispatch => {
+  return search(surfing)
+    .then(searchRes =>
+      dispatch({
+        type: 'FETCH_DATA_SUCCESS',
+        videItems: searchRes
       })
     ).catch(error => {
       dispatch({
