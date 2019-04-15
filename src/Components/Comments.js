@@ -1,5 +1,9 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import styled from 'styled-components';
+
+const CommentsContainer = styled.section`
+
+`;
 
 const Comment = styled.section`
   border-bottom: 1px solid #e6e8eb;
@@ -9,7 +13,7 @@ const Author = styled.div`
 
 `;
 
-const AuthorsComment = styled.div`
+const CommentBody = styled.div`
 
 `;
 
@@ -22,18 +26,18 @@ const Comments = ({ relatedComments }) => {
           <img src={serchedItem.snippet.topLevelComment.snippet.authorProfileImageUrl} alt="author" />
           <h3>{serchedItem.snippet.topLevelComment.snippet.authorDisplayName}</h3>
         </Author>
-        <AuthorsComment>
+        <CommentBody>
           <p>Commented at: {serchedItem.snippet.topLevelComment.snippet.publishedAt.toString()}</p>
           <p>{serchedItem.snippet.topLevelComment.snippet.textDisplay}</p>
-        </AuthorsComment>
+        </CommentBody>
       </Comment>
       )
     }
   );
   return (
-      <Fragment>
+      <CommentsContainer>
         {metaData}
-      </Fragment>
+      </CommentsContainer>
   );
 }
 export default Comments;

@@ -1,14 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components'
 
 import SearchResults from '../Components/SearchResults';
-
-const SearchContaier = styled.section`
-    padding: 0 1rem;
-    display: flex;
-    flex-flow: column nowrap;
-`;
 
 const GreetingText = styled.h2`
   color: #46505a;
@@ -39,11 +33,11 @@ class Search extends Component {
   render() {
     console.log(this.props.videoItems);
     return (
-        <SearchContaier>
-          {this.props.videoItems !== null
-                                      ? <SearchResults videoItems={this.props.videoItems}/>
-                                      : <GreetingText>You have to paste something....</GreetingText>}
-        </SearchContaier>
+      <Fragment>
+        {this.props.videoItems  !== null
+                                ? <SearchResults videoItems={this.props.videoItems}/>
+                                : <GreetingText>You have to paste something....</GreetingText>}
+      </Fragment>
     );
   }
 }

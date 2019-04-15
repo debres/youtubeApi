@@ -17,7 +17,7 @@ export function makeRequest(surfing) {
   }
 }
 
-export const makeRequestNew = surfing => dispatch => {
+export const makeRequestHipster = surfing => dispatch => {
   return search(surfing)
     .then(searchRes =>
       dispatch({

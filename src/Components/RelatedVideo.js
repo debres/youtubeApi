@@ -1,12 +1,9 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-const RelatedVideo = styled.article`
-  width: 100%;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+const RelatedVideoContainer = styled.section`
+
 `;
 
 const ItemLink = styled(Link)`
@@ -18,6 +15,13 @@ const ItemLink = styled(Link)`
   &:focus, &:hover, &:visited, &:link, &:active {
       text-decoration: none;
  }
+`;
+
+const RelatedVideo = styled.article`
+  width: 100%;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 `;
 
 const Preview = styled.figcaption`
@@ -42,23 +46,23 @@ const RelatedVideos = ({ relatedVideo }) => {
   console.log('this related videos', relatedVideo);
   const metaData = relatedVideo.map((serchedItem) => {
     return (
-      <RelatedVideo key={serchedItem.etag}>
-          <ItemLink to={`/SinglePage/${serchedItem.id.videoId}`}>
-            <Preview>
-              <Image src={serchedItem.snippet.thumbnails.default.url} alt={serchedItem.snippet.title} />
-            </Preview>
-            <VideoText>
-              <h3>{serchedItem.snippet.title}</h3>
-            </VideoText>
-          </ItemLink>
-      </RelatedVideo>
+      <ItemLink to={`/SinglePage/${serchedItem.id.videoId}`}>
+        <RelatedVideo key={serchedItem.etag}>
+          <Preview>
+            <Image src={serchedItem.snippet.thumbnails.default.url} alt={serchedItem.snippet.title} />
+          </Preview>
+          <VideoText>
+            <h3>{serchedItem.snippet.title}</h3>
+          </VideoText>
+        </RelatedVideo>
+      </ItemLink>
       )
     }
   );
   return (
-      <Fragment>
+      <RelatedVideoContainer>
         {metaData}
-      </Fragment>
+      </RelatedVideoContainer>
   );
 }
 export default RelatedVideos;

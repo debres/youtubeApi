@@ -25,6 +25,7 @@ const ConstainerFlex = styled.div`
 `;
 
 const Logo = styled(Link)`
+  display: block;
   padding: 1rem;
   color: #46505a;
   text-decoration: none;
@@ -52,11 +53,9 @@ class Header extends Component {
     return (
       <HeaderContainer>
         <ConstainerFlex>
-          <div>
-            <Logo to="/" >
-              <h1>youtubeApi</h1>
-            </Logo>
-          </div>
+          <Logo to="/" >
+            <h1>youtubeApi</h1>
+          </Logo>
           <FormInput>
             <p>
               <input
