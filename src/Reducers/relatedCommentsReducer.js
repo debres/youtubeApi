@@ -1,5 +1,5 @@
 const initialState = {
-  relatedComments: null,
+  commentItems: null,
   error: false
 }
 
@@ -8,7 +8,7 @@ export default (state = initialState, action) => {
     case 'FETCH_RELATED_COMMENTS_ERROR':
       return {...state, error: true};
     case 'FETCH_RELATED_COMMENTS_SUCCESS':
-      return { ...state, relatedComments: action.relatedComments}
+      return { ...state, commentItems: action.commentItems}
     default:
       return state;
   }

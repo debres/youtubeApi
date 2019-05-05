@@ -1,18 +1,27 @@
 AIzaSyAiz9Xy2w4P8wKwiu0aJZ5v2Es90E42K2g
 
 
-<Col xs={4} md={4}>{this.props.relatedVideo !== null
-                            ? <RelatedVideo relatedVideo={this.props.relatedVideo}/>
-                            : <Row><Col><Spinner animation="border" />;</Col></Row>}</Col>
+const mapDispatchToProps = (dispatch) => {
+  return {
+    formSubmitHendeler: (event) => {
+      event.preventDefault();
+    },
+    inputChangeHandeler: (event) => {
+      event.preventDefault();
+      dispatch({type: 'SEARCH_INPUT_CHANGE', surfing: event.target.value })
+    },
+    keyPressHendeler: (event) => {
+      event.preventDefault();
+      if (event.key === 'Enter') {
 
-</Row>
-<Row>
-<Col xs={12} md={8}>{this.props.relatedComments !== null
-                            ? <Comments relatedComments={this.props.relatedComments}/>
-                            : <Row><Col><Spinner animation="border" />;</Col></Row>}</Col>
+      }
+    },
+    buttonClickHendeler: (event) => {
+      event.preventDefault();
+    }
+  }
+}
 
-
-<Route path="/" render={(props) => <Search {...props} search={this.serach}/>} />
 
 
 {{pathname: "/SinglePage", state: metaData }}
@@ -37,7 +46,7 @@ export const relatedComments = (id) => {
 };
 
 
-export const makeRequest = surfing => dispatch => {
+export const makeRequestHipster = surfing => dispatch => {
   return search(surfing)
     .then(searchRes =>
       dispatch({
@@ -50,4 +59,5 @@ export const makeRequest = surfing => dispatch => {
         videItems: error
       })
     })
+}  })
 }

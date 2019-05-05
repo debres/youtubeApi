@@ -1,15 +1,15 @@
 import React, { Fragment } from 'react';
 import { Switch, Route } from 'react-router-dom';
-import Header from './Components/Header';
-import Search from './Containers/Search';
-import SinglePage from './Containers/SinglePage';
+import HeaderContainer from './Containers/HeaderContainer';
+import SearchResultsContainer from './Containers/SearchResultsContainer';
+import SinglePage from './Components/SinglePage';
 
-const Layouts = () => {
+function Layouts() {
   return (
     <Fragment>
-      <Header />
+      <HeaderContainer />
       <Switch>
-        <Route path="/" component={Search} exact/>
+        <Route path="/" component={SearchResultsContainer} exact/>
         <Route path="/SinglePage/:id"
                  render={({match})=>{
                     const { id } = match.params

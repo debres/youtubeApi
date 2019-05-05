@@ -1,6 +1,4 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { makeRequest } from '../Actions/SearchAction';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -44,44 +42,28 @@ const FormInput = styled.form`
   margin-bottom: 1rem;
 `;
 
-class Header extends Component {
-  state = {
-    surfing: ''
-  }
-
-  render() {
-    return (
-      <HeaderContainer>
-        <ConstainerFlex>
-          <Logo to="/" >
-            <h1>youtubeApi</h1>
-          </Logo>
-          <FormInput>
-            <p>
-              <input
-                type="search"
-                value={this.state.surfing}
-                placeholder="serch for videos items..."
-                onChange={event => {this.setState({surfing: event.target.value})}}
-                onKeyPress={event => {
-                  if (event.key === 'Enter') {
-                    this.props.makeRequest(this.state.surfing)
-                  }
-                }} />
-              <Link to="/"><button onSubmit={this.props.makeRequest(this.state.surfing)}>search</button></Link>
-            </p>
-          </FormInput>
-        </ConstainerFlex>
-      </HeaderContainer>
-    );
-  }
+function Header(props) {
+  return (
+    <HeaderContainer>
+      <ConstainerFlex>
+        <Logo to="/" >
+          <h1>youtubeApi</h1>
+        </Logo>
+        <FormInput>
+          <p>
+            <input
+              type="search"
+              value={props.surfing}
+              placeholder="serch for videos items..."
+              onSubmit={() => props.formSubmitHendeler(props.surfing)}
+              onChange={props.inputChangeHandeler}
+              onKeyPress={props.keyPressHendeler} />
+            <Link to="/"><button onClick={() => props.buttonClickHendeler(props.surfing)}>search</button></Link>
+          </p>
+        </FormInput>
+      </ConstainerFlex>
+    </HeaderContainer>
+  );
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    makeRequest: (surfing) => {dispatch(makeRequest(surfing))
-    }
-  }
-}
-
-export default connect(() => {}, mapDispatchToProps)(Header);
+export default Header;

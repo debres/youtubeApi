@@ -21,6 +21,13 @@ const SearchContaier = styled.section`
   }
 `;
 
+const GreetingText = styled.h2`
+  color: #46505a;
+  font-family: 'Lobster', cursive;
+  font-size: 2rem;
+  text-align: center;
+`;
+
 const ItemLink = styled(Link)`
   color: #000;
   text-decoration: none;
@@ -59,28 +66,28 @@ const VideoDescription = styled.div`
   }
 `;
 
-const SearchResults = ({ videoItems }) => {
-  const metaData = videoItems.map((serchedItem) => {
-    return (
-      <ItemLink to={`/SinglePage/${serchedItem.id.videoId}`}>
-        <Item key={serchedItem.etag}>
-          <Preview>
-            <img src={serchedItem.snippet.thumbnails.medium.url} alt="video" />
-          </Preview>
-          <VideoDescription>
-            <h2>{serchedItem.snippet.title}</h2>
-            <p>{serchedItem.snippet.description}</p>
-          </VideoDescription>
-        </Item>
-      </ItemLink>
-      )
-    }
-  );
+function SearchResults({ videoItems }) {
   return (
-      <SearchContaier>
-        {metaData}
-      </SearchContaier>
-  );
+    <SearchContaier>
+      {videoItems !== null
+                  ? videoItems.map((serchedItem) => {
+                      return (
+                        <Item key={serchedItem.etag}>
+                          <ItemLink to={`/SinglePage/${serchedItem.id.videoId}`}>
+                            <Preview>
+                              <img src={serchedItem.snippet.thumbnails.medium.url} alt="video" />
+                            </Preview>
+                            <VideoDescription>
+                              <h2>{serchedItem.snippet.title}</h2>
+                              <p>{serchedItem.snippet.description}</p>
+                            </VideoDescription>
+                          </ItemLink>
+                        </Item>
+                      );
+                    })
+                  : <GreetingText>You have to paste something....</GreetingText>}
+    </SearchContaier>
+  )
 }
 
 export default SearchResults;

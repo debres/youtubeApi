@@ -42,26 +42,25 @@ const VideoText = styled.div`
   }
 `;
 
-const RelatedVideos = ({ relatedVideo }) => {
-  console.log('this related videos', relatedVideo);
-  const metaData = relatedVideo.map((serchedItem) => {
-    return (
-      <ItemLink to={`/SinglePage/${serchedItem.id.videoId}`}>
-        <RelatedVideo key={serchedItem.etag}>
-          <Preview>
-            <Image src={serchedItem.snippet.thumbnails.default.url} alt={serchedItem.snippet.title} />
-          </Preview>
-          <VideoText>
-            <h3>{serchedItem.snippet.title}</h3>
-          </VideoText>
-        </RelatedVideo>
-      </ItemLink>
-      )
-    }
-  );
+function RelatedVideos({ relatedVideoItems }) {
   return (
       <RelatedVideoContainer>
-        {metaData}
+        {relatedVideoItems !== null
+                    ? relatedVideoItems.map((serchedItem) => {
+                        return (
+                          <RelatedVideo key={serchedItem.etag}>
+                            <ItemLink to={`/SinglePage/${serchedItem.id.videoId}`}>
+                              <Preview>
+                                <Image src={serchedItem.snippet.thumbnails.default.url} alt={serchedItem.snippet.title} />
+                              </Preview>
+                              <VideoText>
+                                <h3>{serchedItem.snippet.title}</h3>
+                              </VideoText>
+                            </ItemLink>
+                          </RelatedVideo>
+                        );
+                      })
+                    : <div>Spiner....</div>}
       </RelatedVideoContainer>
   );
 }

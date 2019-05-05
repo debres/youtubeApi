@@ -1,5 +1,5 @@
 const initialState = {
-  relatedVideo: null,
+  relatedVideoItems: null,
   error: false
 }
 
@@ -8,7 +8,7 @@ export default (state = initialState, action) => {
     case 'FETCH_RELATED_VIDEO_ERROR':
       return {...state, error: true};
     case 'FETCH_RELATED_VIDEO_SUCCESS':
-      return { ...state, relatedVideo: action.relatedVideo }
+      return { ...state, relatedVideoItems: action.relatedVideoItems }
     default:
       return state;
   }

@@ -17,26 +17,25 @@ const CommentBody = styled.div`
 
 `;
 
-const Comments = ({ relatedComments }) => {
-  console.log('this related comments is', relatedComments);
-  const metaData = relatedComments.map((serchedItem) => {
-    return (
-      <Comment key={serchedItem.etag}>
-        <Author>
-          <img src={serchedItem.snippet.topLevelComment.snippet.authorProfileImageUrl} alt="author" />
-          <h3>{serchedItem.snippet.topLevelComment.snippet.authorDisplayName}</h3>
-        </Author>
-        <CommentBody>
-          <p>Commented at: {serchedItem.snippet.topLevelComment.snippet.publishedAt.toString()}</p>
-          <p>{serchedItem.snippet.topLevelComment.snippet.textDisplay}</p>
-        </CommentBody>
-      </Comment>
-      )
-    }
-  );
+function Comments({ commentItems }) {
   return (
       <CommentsContainer>
-        {metaData}
+        {commentItems !== null
+                      ? commentItems.map((serchedItem) => {
+                          return (
+                            <Comment key={serchedItem.etag}>
+                              <Author>
+                                <img src={serchedItem.snippet.topLevelComment.snippet.authorProfileImageUrl} alt="author" />
+                                <h3>{serchedItem.snippet.topLevelComment.snippet.authorDisplayName}</h3>
+                              </Author>
+                              <CommentBody>
+                                <p>Commented at: {serchedItem.snippet.topLevelComment.snippet.publishedAt.toLocaleString()}</p>
+                                <p>{serchedItem.snippet.topLevelComment.snippet.textDisplay}</p>
+                              </CommentBody>
+                            </Comment>
+                          );
+                        })
+                      : <div>Spiner....</div>}
       </CommentsContainer>
   );
 }

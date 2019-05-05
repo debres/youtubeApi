@@ -6,12 +6,12 @@ export function getRelatedVideo(id) {
     .then(searchRes =>
       dispatch({
         type: 'FETCH_RELATED_VIDEO_SUCCESS',
-        relatedVideo: searchRes
+        relatedVideoItems: searchRes
       })
     ).catch(error => {
       dispatch({
         type: 'FETCH_RELATED_VIDEO_ERROR',
-        relatedVideo: error
+        relatedVideoItems: error
       })
     })
   }
