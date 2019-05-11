@@ -2,11 +2,19 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getRelatedComments } from '../Actions/GetRelatedComments';
 
-import Comments from '../Components/Comments';
+import Comments from '../Components/Comments/Comments';
 
 class CommentsContainer extends Component {
 
-  componentDidMount() {
+  shouldComponentUpdate(prevProps) {
+    if (this.props.commentItems !== prevProps.commentItems) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  componentWillMount() {
     const { getRelatedComments, id } = this.props;
     getRelatedComments(id);
   }

@@ -1,21 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import SearchResults from '../Components/SearchResults';
+import SearchResults from '../Components/SearchResults/SearchResults';
 
 class SearchResultsContainer extends Component {
-  
-  componentDidUdate(prevProps) {
-    if (this.props.videoItems !== prevProps.videoItems) {
-      this.updateList();
-    }
-  }
 
-  updateList() {
-    const { videoItems } = this.props;
-    if (!videoItems) {
-      return;
+  shouldComponentUpdate(prevProps) {
+    if (this.props.videoItems !== prevProps.videoItems) {
+      return true;
+    } else {
+      return false;
     }
-    this.steState({videoItems});
   }
 
   render() {

@@ -2,11 +2,19 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getRelatedVideo } from '../Actions/GetRelatedVideo';
 
-import RelatedVideo from '../Components/RelatedVideo';
+import RelatedVideo from '../Components/RelatedVideo/RelatedVideo';
 
 class RelatedVideoCotainer extends Component {
 
-  componentDidMount() {
+  shouldComponentUpdate(prevProps) {
+    if (this.props.relatedVideoItems !== prevProps.relatedVideoItems) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  componentWillMount() {
     const { getRelatedVideo, id } = this.props;
     getRelatedVideo(id);
   }

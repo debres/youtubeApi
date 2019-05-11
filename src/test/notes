@@ -1,5 +1,18 @@
 AIzaSyAiz9Xy2w4P8wKwiu0aJZ5v2Es90E42K2g
 
+main: "font-family: 'Oswald', sans-serif;",
+slanted: "font-family: 'Lato', sans-serif;"
+
+<div>
+<iframe width="480"
+        height="320"
+        src={`https://www.youtube.com/embed/${id}`}
+        frameBorder="0"
+        allowFullScreen
+        title='title' />
+</div>
+
+
 
 const mapDispatchToProps = (dispatch) => {
   return {

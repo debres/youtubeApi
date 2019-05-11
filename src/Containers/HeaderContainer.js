@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { doSearch } from '../Actions/SearchAction';
-import Header from '../Components/Header';
+import Header from '../Components/Header/Header';
 
 
 class HeaderContainer extends Component {

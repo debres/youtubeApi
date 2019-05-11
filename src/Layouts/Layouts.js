@@ -1,8 +1,8 @@
 import React, { Fragment } from 'react';
 import { Switch, Route } from 'react-router-dom';
-import HeaderContainer from './Containers/HeaderContainer';
-import SearchResultsContainer from './Containers/SearchResultsContainer';
-import SinglePage from './Components/SinglePage';
+import HeaderContainer from '../Containers/HeaderContainer';
+import SearchResultsContainer from '../Containers/SearchResultsContainer';
+import SinglePage from '../Components/SinglePage/SinglePage';
 
 function Layouts() {
   return (

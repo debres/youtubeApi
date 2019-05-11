@@ -8,17 +8,18 @@ const ErrorContainer = styled.section`
 
 const Logo = styled(Link)`
   display: block;
-  padding: 1rem;
   color: #46505a;
   text-decoration: none;
+  trasition-property: color;
+  transition-duration: 0.2s;
   > h1 {
     margin-bottom: 1rem;
     font-family: 'Lobster', cursive;
-    text-align: center;
     font-size: 3rem;
   }
-  &:focus, &:hover, &:visited, &:link, &:active {
-      text-decoration: none;
+  &:hover, &:link {
+    color: red;
+    text-decoration: none;
    }
 `;
 
