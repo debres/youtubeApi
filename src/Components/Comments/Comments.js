@@ -29,10 +29,21 @@ function Comments({ className, commentItems }) {
 }
 
 const StyledComments = styled(Comments)`
-  margin-bottom: 1rem;
-  border-top: 1px solid black;
+  padding: 0 1.5rem;
+  max-width: 75rem;
   .autor {
     display: flex;
+    align-items: center;
+    img {
+      margin-right: 2rem;
+      border-radius: 50%;
+    }
+  }
+  .comment {
+    padding: 0 1.5rem;
+    p {
+      margin-bottom: 1rem;
+    }
   }
 `;
 

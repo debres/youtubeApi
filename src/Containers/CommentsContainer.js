@@ -9,9 +9,16 @@ class CommentsContainer extends Component {
   shouldComponentUpdate(prevProps) {
     if (this.props.commentItems !== prevProps.commentItems) {
       return true;
+    } if (this.props.id !== prevProps.id) {
+      return true;
     } else {
       return false;
     }
+  }
+
+  componentDidUpdate() {
+    const { getRelatedComments, id } = this.props;
+    getRelatedComments(id);
   }
 
   componentWillMount() {
@@ -26,7 +33,8 @@ class CommentsContainer extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    commentItems: state.relatedComments.commentItems
+    commentItems: state.relatedComments.commentItems,
+    loading: state.relatedComments.loading
   }
 }
 

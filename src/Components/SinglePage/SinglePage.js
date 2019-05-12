@@ -31,6 +31,7 @@ const StyledSinglePage = styled(SinglePage)`
   @media (min-width: 768px) {
     margin: 0 2rem;
     display: grid;
+    justify-items: center;
     grid-template-rows: auto;
     grid-template-columns: auto, 320px;
     grid-gap: 2rem;
@@ -38,27 +39,15 @@ const StyledSinglePage = styled(SinglePage)`
     "player  aside"
     "comment aside";
   }
-  /*@media (min-width: 992px) {
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(3, fit-content());
-    grid-template-rows: fit-content();
-    grid-gap: 2rem;
-    grid-template-areas:
-    "player  player aside"
-    "comment comment aside"
-  }*/
   div {
     grid-area: player;
-    margin-bottom: 1rem;
   }
   aside {
+    margin: 0 auto;
     grid-area: aside;
-    margin-bottom: 1rem;
   }
   section {
     grid-area: comment;
-    margin-bottom: 1rem;
   }
 `;
 

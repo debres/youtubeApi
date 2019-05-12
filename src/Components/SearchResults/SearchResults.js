@@ -44,10 +44,24 @@ const StyledSearchResults = styled(SearchResults)`
     display: grid;
     grid-template-rows: auto;
     grid-template-columns: 1fr;
+    a {
+      grid-template-rows: auto;
+      grid-template-columns: 1fr 2fr;
+      section > h3 {
+        font-size: 2rem
+        text-align: left;
+      }
+      section > p {
+        font-size: 1.5rem;
+      }
+    }
   }
   h2 {
     text-align: center;
     font-family: 'Oswald', sans-serif;
+    @madia(min-width: 768px) {
+
+    }
   }
   article {
     position: relative;

@@ -15,11 +15,11 @@ const store = configStore();
 
 const app = (
   <Provider store={store}>
-    <ErrorBoundry>
-      <BrowserRouter>
+    <BrowserRouter>
+      <ErrorBoundry>
         <Layouts />
-      </BrowserRouter>
-    </ErrorBoundry>
+      </ErrorBoundry>
+    </BrowserRouter>
   </Provider>
 );
 

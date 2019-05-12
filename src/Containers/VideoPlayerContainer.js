@@ -8,9 +8,16 @@ class VideoPlayerContainer extends Component {
   shouldComponentUpdate(prevProps) {
     if (this.props.videoStatistics !== prevProps.videoStatistics) {
       return true;
+    } if (this.props.id !== prevProps.id) {
+      return true;
     } else {
       return false;
     }
+  }
+
+  componentDidUpdate() {
+    const { getVideoInfo, id } = this.props;
+    getVideoInfo(id);
   }
 
   componentWillMount() {
@@ -25,7 +32,8 @@ class VideoPlayerContainer extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    videoStatistics: state.videoInfo.videoStatistics
+    videoStatistics: state.videoInfo.videoStatistics,
+    loading: state.videoInfo.loading
   }
 }
 

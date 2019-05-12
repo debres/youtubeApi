@@ -9,9 +9,16 @@ class RelatedVideoCotainer extends Component {
   shouldComponentUpdate(prevProps) {
     if (this.props.relatedVideoItems !== prevProps.relatedVideoItems) {
       return true;
+    } if (this.props.id !== prevProps.id) {
+      return true;
     } else {
       return false;
     }
+  }
+
+  componentDidUpdate() {
+    const { getRelatedVideo, id } = this.props;
+    getRelatedVideo(id);
   }
 
   componentWillMount() {
@@ -26,7 +33,8 @@ class RelatedVideoCotainer extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    relatedVideoItems: state.relatedVideo.relatedVideoItems
+    relatedVideoItems: state.relatedVideo.relatedVideoItems,
+    loading: state.relatedVideo.loading
   }
 }
 

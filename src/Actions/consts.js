@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const apiKey = 'AIzaSyCyMx1fP4gRW58nBYn6FIYmwcZvkZvGKhM';
+const apiKey = 'AIzaSyAiz9Xy2w4P8wKwiu0aJZ5v2Es90E42K2g';
 
 export function search(surfing) {
   return axios.get(`search?part=snippet&maxResults=25&type=video&key=${apiKey}&q=${surfing}`)

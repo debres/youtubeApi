@@ -2,22 +2,21 @@ import React from 'react';
 import styled from 'styled-components';
 
 function VideoPlayer({className, id, videoStatistics}) {
-  console.log(videoStatistics)
   return (
-    <article className={className}>
-      <div>
+    <section className={className}>
+      <figcaption>
       <iframe width="480"
               height="320"
               src={`https://www.youtube.com/embed/${id}`}
               frameBorder="0"
               allowFullScreen
               title='title' />
-      </div>
+      </figcaption>
       <>
         {videoStatistics !== null
                          ? videoStatistics.map((item) => {
                            return (
-                              <section className="statistics" key={item.etag}>
+                              <article key={item.etag}>
                                   <h2>{item.snippet.title}</h2>
                                   <hr />
                                   <span>Commented times: {item.statistics.commentCount}</span>
@@ -26,19 +25,19 @@ function VideoPlayer({className, id, videoStatistics}) {
                                   <span>Viewed times: {item.statistics.viewCount}</span>
                                   <hr />
                                   <p>{item.snippet.description}</p>
-                                </section>
+                                </article>
                               )
                             })
                          : <p>Statistics is null</p>}
       </>
-    </article>
+    </section>
   )
 }
 
 const StyledVideoPlayer = styled(VideoPlayer)`
   margin-bottom: min;
   min-height: 600px;
-  div {
+  figcaption {
     position: relative;
     padding-bottom: 56.25%;
     padding-top: 30px;
@@ -52,8 +51,8 @@ const StyledVideoPlayer = styled(VideoPlayer)`
       height: 100%;
     }
   }
-  .statistics {
-    
+  article {
+    max-width: 75rem;
   }
 `;
 

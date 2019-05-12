@@ -1,19 +1,25 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import ErrorIndicator from '../Components/ErrorIndicator/ErrorIndicator';
 
-export default class ErrorBoundry extends Component {
-  state = {
-    errorCatched: false
-  }
+class ErrorBoundry extends Component {
 
   componentDidCatch() {
-    this.setState({errorCatched: true});
+    
   }
 
   render() {
-    if (this.state.errorCatched) {
+    if (this.props.error) {
       return <ErrorIndicator />
     }
     return this.props.children;
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    error: state.search.error
+  }
+}
+
+export default connect(mapStateToProps, null)(ErrorBoundry);

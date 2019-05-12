@@ -19,7 +19,8 @@ class SearchResultsContainer extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    videoItems: state.search.videoItems
+    videoItems: state.search.videoItems,
+    loading: state.search.loading
    }
 }
 

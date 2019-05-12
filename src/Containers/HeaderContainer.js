@@ -25,7 +25,7 @@ const mapDispatchToProps = (dispatch) => {
       })
     },
     keyPressHendeler: (event, surfing) => {
-      if (event.key === 'Enter') {
+      if (event.key === 13) {
         dispatch(doSearch(surfing));
       }
     },

@@ -6,7 +6,6 @@ function Header(props) {
   const { className } = props;
   return (
     <header className={className}>
-      <div>
         <Link to="/">
           <h1>youtubeApi</h1>
         </Link>
@@ -20,7 +19,6 @@ function Header(props) {
                 onKeyPress={props.keyPressHendeler} />
               <Link to="/"><button onClick={() => props.buttonClickHendeler(props.surfing)}>search</button></Link>
         </form>
-      </div>
     </header>
   );
 }
@@ -30,39 +28,39 @@ const StyledHeader = styled(Header)`
   top: 0;
   z-index: 1;
   padding: 0 1rem;
-  margin-bottom: 2rem;
-  min-height: 4rem;
+  margin-bottom: 1rem;
+  min-height: 6rem;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
   background-color: #fff;
   box-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.1);
-  div {
-    margin: 0 auto;
-    max-width: 75rem;
+  @media (min-width: 768px) {
     display: flex;
-    flex-flow: column nowrap;
+    flex-flow: row nowrap;
     align-items: center;
     justify-content: center;
-    @media (min-width: 768px) {
-      display: flex;
-      flex-flow: row nowrap;
-      align-items: center;
-      justify-content: center;
-    }
   }
   a {
     display: block;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
     text-decoration: none;
     color: #000;
+    &:hover {
+      color: #1e1e1e;
+    }
     h1 {
       font-size: 2rem;
       font-family: 'Oswald', sans-serif;
     }
   }
 form {
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
   width: 100%;
   display: flex;
   input {
+    cursor: pointer;
     outline: none;
     margin: 0 auto;
     width: 35%;
